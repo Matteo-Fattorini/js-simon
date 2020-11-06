@@ -12,19 +12,37 @@ arrComp = [];
 arrUser = [];
 countdown = 30;
 
-for (var i = 0; i < 5; i++) {
-  arrComp.push(Math.floor(Math.random() * 100));
-}
-alert(arrComp);
 
 
 
+console.log("arrComp.length", arrComp.length)
 
-setTimeout(function () {
-  for (var i = 0; i < 5; i++) {
-    arrUser.push(prompt("Inserisci, in ordine, i numeri"));
+while (arrComp.length < 5) {
+  number = Math.floor(Math.random() * 100);
+  console.log(number);
+  if (arrComp.indexOf(number) === -1) {
+    arrComp.push(number)
+   
   }
-}, 30000);
+}
+
+alert(arrComp)
+
+
+
+  while(arrUser.length < 5) {
+    userpick = parseInt(prompt("Inserisci, in ordine, i numeri"));
+    if (isNaN(userpick)) {
+      alert("Devi inserire numeri!")
+    }else if  (arrUser.indexOf(userpick) != -1) {
+      alert("Hai già inserito questo numero")
+    } else {
+      arrUser.push(userpick);
+    }
+  }
+
+
+
 
 var timer = setInterval(function () {
   resultEl.innerHTML = --countdown;
@@ -34,14 +52,14 @@ function checkWinner() {
   var counter = 0;
   var guessedNum = [];
   for (var i = 0; i < 5; i++) {
-    if (arrComp[i] == arrUser[i]) {
-      guessedNum.push(arrComp[i]);
+    if (arrComp.includes(arrUser[i])) {
+      guessedNum.push(arrUser[i]);
       counter++;
     }
     resultEl.innerHTML =
       "Ne hai indovinati " + counter + ": " + guessedNum.join(", ");
-    }
-    clearInterval(timer);
+  }
+  clearInterval(timer);
 }
 
 setTimeout(checkWinner, 31000);

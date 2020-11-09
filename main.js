@@ -12,37 +12,17 @@ arrComp = [];
 arrUser = [];
 countdown = 30;
 
-
-
-
-console.log("arrComp.length", arrComp.length)
+console.log("arrComp.length", arrComp.length);
 
 while (arrComp.length < 5) {
   number = Math.floor(Math.random() * 100);
   console.log(number);
   if (arrComp.indexOf(number) === -1) {
-    arrComp.push(number)
-   
+    arrComp.push(number);
   }
 }
 
-alert(arrComp)
-
-
-
-  while(arrUser.length < 5) {
-    userpick = parseInt(prompt("Inserisci, in ordine, i numeri"));
-    if (isNaN(userpick)) {
-      alert("Devi inserire numeri!")
-    }else if  (arrUser.indexOf(userpick) != -1) {
-      alert("Hai già inserito questo numero")
-    } else {
-      arrUser.push(userpick);
-    }
-  }
-
-
-
+alert(arrComp);
 
 var timer = setInterval(function () {
   resultEl.innerHTML = --countdown;
@@ -51,6 +31,16 @@ var timer = setInterval(function () {
 function checkWinner() {
   var counter = 0;
   var guessedNum = [];
+  while (arrUser.length < 5) {
+    userpick = parseInt(prompt("Inserisci, in ordine, i numeri"));
+    if (isNaN(userpick)) {
+      alert("Devi inserire numeri!");
+    } else if (arrUser.indexOf(userpick) != -1) {
+      alert("Hai già inserito questo numero");
+    } else {
+      arrUser.push(userpick);
+    }
+  }
   for (var i = 0; i < 5; i++) {
     if (arrComp.includes(arrUser[i])) {
       guessedNum.push(arrUser[i]);
@@ -62,4 +52,4 @@ function checkWinner() {
   clearInterval(timer);
 }
 
-setTimeout(checkWinner, 31000);
+setTimeout(checkWinner, 30000);
